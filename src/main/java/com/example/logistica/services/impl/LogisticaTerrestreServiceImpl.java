@@ -41,7 +41,7 @@ public class LogisticaTerrestreServiceImpl implements LogisticaTerrestreService 
 
     @Override
     public LogisticaTerrestreDTO findById(Long id) {
-        return modelMapper.map(logisticaTerrestreRepository.findById(id), LogisticaTerrestreDTO.class);
+        return modelMapper.map(logisticaTerrestreRepository.getById(id), LogisticaTerrestreDTO.class);
     }
 
     @Override
@@ -77,10 +77,10 @@ public class LogisticaTerrestreServiceImpl implements LogisticaTerrestreService 
 
     @Override
     public LogisticaTerrestreDTO save(LogisticaTerrestreViews logisticaTerrestreViews) {
-        TipoProducto tipoProducto = tipoProductoRepository.getById(logisticaTerrestreViews.getTipoProductoId());
-        Vehiculo vehiculo = vehiculoRepository.getById(logisticaTerrestreViews.getVehiculosId());
-        Bodegas bodegas = bodegasRepository.getById(logisticaTerrestreViews.getBodegasId());
-        Cliente cliente = clienteRepository.getById(logisticaTerrestreViews.getClientesId());
+        TipoProducto tipoProducto = tipoProductoRepository.getById(logisticaTerrestreViews.getTipoProducto());
+        Vehiculo vehiculo = vehiculoRepository.getById(logisticaTerrestreViews.getVehiculos());
+        Bodegas bodegas = bodegasRepository.getById(logisticaTerrestreViews.getBodegas());
+        Cliente cliente = clienteRepository.getById(logisticaTerrestreViews.getClientes());
         LogisticaTerrestre logisticaTerrestre = modelMapper.map(logisticaTerrestreViews, LogisticaTerrestre.class);
         logisticaTerrestre.setTipoProducto(tipoProducto);
         logisticaTerrestre.setVehiculos(vehiculo);
@@ -89,7 +89,7 @@ public class LogisticaTerrestreServiceImpl implements LogisticaTerrestreService 
         if (logisticaTerrestreViews.getCantidad() > 10) {
             Double precio = logisticaTerrestreViews.getPrecioEnvio().doubleValue();
             Double descuento = (precio * 5) / 100;
-            BigDecimal precioNuevo = BigDecimal.valueOf(precio + descuento);
+            BigDecimal precioNuevo = BigDecimal.valueOf(precio - descuento);
             logisticaTerrestre.setPrecioEnvio(precioNuevo);
             logisticaTerrestre.setDescuento(BigDecimal.valueOf(descuento));
             logisticaTerrestre.setPrecioNormal(logisticaTerrestreViews.getPrecioEnvio());
@@ -103,12 +103,20 @@ public class LogisticaTerrestreServiceImpl implements LogisticaTerrestreService 
     public LogisticaTerrestreDTO update(LogisticaTerrestreViews logisticaTerrestreViews, Long id) {
         Optional<LogisticaTerrestre> existLogistica = logisticaTerrestreRepository.findById(id);
         if (existLogistica.isPresent()) {
+            TipoProducto tipoProducto = tipoProductoRepository.getById(logisticaTerrestreViews.getTipoProducto());
+            Vehiculo vehiculo = vehiculoRepository.getById(logisticaTerrestreViews.getVehiculos());
+            Bodegas bodegas = bodegasRepository.getById(logisticaTerrestreViews.getBodegas());
+            Cliente cliente = clienteRepository.getById(logisticaTerrestreViews.getClientes());
             LogisticaTerrestre logisticaTerrestre = modelMapper.map(logisticaTerrestreViews, LogisticaTerrestre.class);
+            logisticaTerrestre.setTipoProducto(tipoProducto);
+            logisticaTerrestre.setVehiculos(vehiculo);
+            logisticaTerrestre.setBodegas(bodegas);
+            logisticaTerrestre.setClientes(cliente);
             logisticaTerrestre.setId(id);
             if (logisticaTerrestreViews.getCantidad() > 10) {
                 Double precio = logisticaTerrestreViews.getPrecioEnvio().doubleValue();
                 Double descuento = (precio * 5) / 100;
-                BigDecimal precioNuevo = BigDecimal.valueOf(precio + descuento);
+                BigDecimal precioNuevo = BigDecimal.valueOf(precio - descuento);
                 logisticaTerrestre.setPrecioEnvio(precioNuevo);
                 logisticaTerrestre.setDescuento(BigDecimal.valueOf(descuento));
                 logisticaTerrestre.setPrecioNormal(logisticaTerrestreViews.getPrecioEnvio());

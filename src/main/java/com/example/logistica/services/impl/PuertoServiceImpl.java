@@ -34,7 +34,7 @@ public class PuertoServiceImpl implements PuertoService {
 
     @Override
     public PuertoDTO findById(Long id) {
-        return modelMapper.map(puertoRepository.findById(id), PuertoDTO.class);
+        return modelMapper.map(puertoRepository.getById(id), PuertoDTO.class);
     }
 
     @Override

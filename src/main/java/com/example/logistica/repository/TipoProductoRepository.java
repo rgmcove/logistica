@@ -10,11 +10,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface TipoProductoRepository extends JpaRepository<TipoProducto, Integer> {
+public interface TipoProductoRepository extends JpaRepository<TipoProducto, Long> {
 
-    @Query("SELECT t FROM TipoProducto t WHERE t.tipoLogistica.id = 1")
+    @Query("SELECT t FROM TipoProducto t WHERE t.tipoLogistica.idLogistica = 1")
     List<TipoProducto> findByTerrestre();
 
-    @Query("SELECT t FROM TipoProducto t WHERE t.tipoLogistica.id = 2")
+    @Query("SELECT t FROM TipoProducto t WHERE t.tipoLogistica.idLogistica = 2")
     List<TipoProducto> findByMaritimo();
 }

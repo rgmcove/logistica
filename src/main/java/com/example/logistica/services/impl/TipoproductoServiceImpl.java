@@ -30,8 +30,8 @@ public class TipoproductoServiceImpl implements TipoProductoService {
     }
 
     @Override
-    public TipoProductoDTO findById(Integer id) {
-        return modelMapper.map(tipoProductoRepository.findById(id), TipoProductoDTO.class);
+    public TipoProductoDTO findById(Long id) {
+        return modelMapper.map(tipoProductoRepository.getById(id), TipoProductoDTO.class);
     }
 
     @Override
@@ -54,16 +54,16 @@ public class TipoproductoServiceImpl implements TipoProductoService {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(Long id) {
         tipoProductoRepository.deleteById(id);
     }
 
     @Override
-    public TipoProductoDTO update(TipoProductoViews tipoProductoViews, Integer id) {
+    public TipoProductoDTO update(TipoProductoViews tipoProductoViews, Long id) {
         Optional<TipoProducto> exists = tipoProductoRepository.findById(id);
         if (exists.isPresent()) {
             TipoProducto tipoProducto    = modelMapper.map(tipoProductoViews, TipoProducto.class);
-            tipoProducto.setId(id);
+            tipoProducto.setIdProducto(id);
             return modelMapper.map(tipoProductoRepository.save(tipoProducto), TipoProductoDTO.class);
         } else {
             return null;

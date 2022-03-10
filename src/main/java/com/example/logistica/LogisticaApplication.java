@@ -44,6 +44,7 @@ public class LogisticaApplication {
 					.antMatchers("/swagger-ui/**").permitAll()
 					.antMatchers("/api-docs/**").permitAll()
 					.antMatchers("/login").permitAll()
+					.antMatchers("/*").permitAll()
 					.anyRequest().authenticated();
 		}
 	}

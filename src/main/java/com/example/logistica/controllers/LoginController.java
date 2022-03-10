@@ -4,6 +4,7 @@ import com.example.logistica.entities.Usuarios;
 import com.example.logistica.entities.views.LoginView;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,8 @@ import java.util.stream.Collectors;
 @RequestMapping("/login")
 public class LoginController {
 
+    @Operation(description = "Login para generar token, que permita acceder a los endpoints protegidos. " +
+            "Temporalmente se puede digitar cualquier usuario y contraseña")
     @PostMapping
     public LoginView login(@RequestParam("username") String username, @RequestParam("password") String password) {
         String token = getJWTToken(username);
@@ -42,7 +45,7 @@ public class LoginController {
                                 .map(GrantedAuthority::getAuthority)
                                 .collect(Collectors.toList()))
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 600000))
+                .setExpiration(new Date(System.currentTimeMillis() + 3600000))
                 .signWith(SignatureAlgorithm.HS512,
                         secretKey.getBytes()).compact();
 

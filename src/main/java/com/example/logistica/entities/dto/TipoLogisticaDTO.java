@@ -1,16 +1,20 @@
 package com.example.logistica.entities.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Data
-public class TipoLogisticaDTO implements Serializable {
-    @NotNull(message = "el id tipo de logística es obligatório")
-    private final Integer id;
-    @NotNull(message = "la descripción es obligatória")
-    @Size(max = 45, message = "la descripción no puede tener más de 45 caracteres")
-    private final String descripcion;
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class TipoLogisticaDTO {
+
+    private Integer idLogistica;
+    private String descripcion;
 }

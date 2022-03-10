@@ -43,7 +43,7 @@ public class Cliente {
     @Email(message = "El email no es valido")
     private String email;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "fk_municipio")
     private Municipio municipio;
 }

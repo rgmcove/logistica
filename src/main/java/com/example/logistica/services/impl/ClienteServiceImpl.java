@@ -34,7 +34,7 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public ClienteDTO findById(Long id) {
-        return modelMapper.map(clienteRepository.findById(id), ClienteDTO.class);
+        return modelMapper.map(clienteRepository.getById(id), ClienteDTO.class);
     }
 
     @Override

@@ -18,6 +18,11 @@ public class Puerto {
     @Column(name = "id_puerto")
     private Long id;
 
+    @Column(name = "nombre")
+    @NotNull(message = "El nombre no puede ser nula")
+    @Size(max = 100, message = "El nombre no puede tener más de 100 caracteres")
+    private String nombre;
+
     @Column(name = "direccion")
     @NotNull(message = "La dirección no puede ser nula")
     @Size(max = 45, message = "La dirección no puede tener más de 45 caracteres")
@@ -29,7 +34,7 @@ public class Puerto {
     @Pattern(regexp = "^[0-9]*$", message = "El telefono solo puede contener numeros")
     private String telefono;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "fk_id_municipio")
     private Municipio municipio;
 

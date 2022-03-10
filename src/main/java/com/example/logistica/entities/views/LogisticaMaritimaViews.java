@@ -2,6 +2,7 @@ package com.example.logistica.entities.views;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
@@ -13,24 +14,25 @@ import java.time.LocalDate;
 
 @AllArgsConstructor
 @Getter
-public class LogisticaMaritimaViews implements Serializable {
+@Setter
+public class LogisticaMaritimaViews {
 
     @NotNull(message = "La cantidad es obligatoria")
-    private final Integer cantidad;
+    private Integer cantidad;
     @NotNull(message = "La fecha de registro es obligatoria")
-    private final LocalDate fechaRegistro;
+    private LocalDate fechaRegistro;
     @NotNull(message = "La fecha de entrega es obligatoria")
-    private final LocalDate fechaEntrega;
+    private LocalDate fechaEntrega;
     @NotNull(message = "El precio de envio es obligatorio")
     @DecimalMin(value = "0.0", inclusive = false)
-    @Digits(integer=3, fraction=2)
-    private final BigDecimal precioEnvio;
+    @Digits(integer = 15, fraction = 2)
+    private BigDecimal precioEnvio;
     @NotNull(message = "El numero de guia es obligatorio")
     @Size(max = 10, message = "El numero de guia no puede tener mas de 10 caracteres")
-    private final String numeroGuia;
+    private String numeroGuia;
     @NotNull(message = "El id del tipo de producto no puede ser nulo")
-    private final Integer tipoProductoId;
-    private final Long puertosId;
-    private final Long flotaId;
-    private final Long clientesId;
+    private Long tipoProducto;
+    private Long puertos;
+    private Long flota;
+    private Long clientes;
 }

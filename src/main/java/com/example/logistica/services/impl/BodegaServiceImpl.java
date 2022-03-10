@@ -34,7 +34,7 @@ public class BodegaServiceImpl implements BodegasService {
 
     @Override
     public BodegasDTO findById(Long id) {
-        return modelMapper.map(bodegasRepository.findById(id), BodegasDTO.class);
+        return modelMapper.map(bodegasRepository.getById(id), BodegasDTO.class);
     }
 
     @Override

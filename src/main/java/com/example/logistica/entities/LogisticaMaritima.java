@@ -22,51 +22,39 @@ public class LogisticaMaritima {
     private Long id;
 
     @Column(name = "cantidad")
-    @NotNull(message = "La cantidad es obligatoria")
     private Integer cantidad;
 
     @Column(name = "fecha_registro")
-    @NotNull(message = "La fecha de registro es obligatoria")
     private LocalDate fechaRegistro;
 
     @Column(name = "fecha_entrega")
-    @NotNull(message = "La fecha de entrega es obligatoria")
     private LocalDate fechaEntrega;
 
     @Column(name = "precio_envio", precision = 10)
-    @NotNull(message = "El precio de envio es obligatorio")
-    @DecimalMin(value = "0.0", inclusive = false)
-    @Digits(integer=3, fraction=2)
     private BigDecimal precioEnvio;
 
     @Column(name = "numero_guia")
-    @NotNull(message = "El numero de guia es obligatorio")
-    @Size(max = 10, message = "El numero de guia no puede tener mas de 10 caracteres")
     private String numeroGuia;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "fk_tipo_producto")
     private TipoProducto tipoProducto;
 
-    @DecimalMin(value = "0.0", inclusive = false)
-    @Digits(integer=3, fraction=2)
     @Column(name = "descuento", precision = 10)
     private BigDecimal descuento;
 
-    @DecimalMin(value = "0.0", inclusive = false)
-    @Digits(integer=3, fraction=2)
     @Column(name = "precio_normal", precision = 10)
     private BigDecimal precioNormal;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "fk_puerto")
     private Puerto puertos;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "fk_flota")
     private Flota flota;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "fk_cliente")
     private Cliente clientes;
 

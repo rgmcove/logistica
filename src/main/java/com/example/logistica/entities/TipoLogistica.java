@@ -16,7 +16,7 @@ public class TipoLogistica {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_tipo_logistica")
     @NotNull(message = "el id tipo de logística es obligatório")
-    private Integer id;
+    private Integer idLogistica;
 
     @Column(name = "descripcion")
     @NotNull(message = "la descripción es obligatória")

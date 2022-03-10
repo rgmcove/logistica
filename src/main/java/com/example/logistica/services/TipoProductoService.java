@@ -7,15 +7,15 @@ import org.springframework.data.domain.Page;
 import java.util.List;
 
 public interface TipoProductoService {
-    TipoProductoDTO findById(Integer id);
+    TipoProductoDTO findById(Long id);
 
     Page<TipoProductoDTO> getAllTipoProducto(int page, int size);
 
     TipoProductoDTO save(TipoProductoViews tipoProductoViews);
 
-    void delete(Integer id);
+    void delete(Long id);
 
-    TipoProductoDTO update(TipoProductoViews tipoProductoViews, Integer id);
+    TipoProductoDTO update(TipoProductoViews tipoProductoViews, Long id);
 
     List<TipoProductoDTO> getTipoProductosByTerrestre();
 

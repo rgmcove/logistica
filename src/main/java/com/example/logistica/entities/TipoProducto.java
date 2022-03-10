@@ -15,15 +15,12 @@ public class TipoProducto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_tipo_producto")
-    @NotNull(message = "El id del tipo de producto no puede ser nulo")
-    private Integer id;
+    private Long idProducto;
 
     @Column(name = "descripcion")
-    @NotNull(message = "La descripcion del tipo de producto no puede ser nula")
-    @Size(max = 300, message = "La descripcion del tipo de producto no puede tener mas de 300 caracteres")
     private String descripcion;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "fk_tipo_logistica")
     private TipoLogistica tipoLogistica;
 

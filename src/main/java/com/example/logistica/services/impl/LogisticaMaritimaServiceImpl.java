@@ -41,7 +41,7 @@ public class LogisticaMaritimaServiceImpl implements LogisticaMaritimaService {
 
     @Override
     public LogisticaMaritimaDTO findById(Long id) {
-        return modelMapper.map(logisticaMaritimaRepository.findById(id), LogisticaMaritimaDTO.class);
+        return modelMapper.map(logisticaMaritimaRepository.getById(id), LogisticaMaritimaDTO.class);
     }
 
     @Override
@@ -77,10 +77,10 @@ public class LogisticaMaritimaServiceImpl implements LogisticaMaritimaService {
 
     @Override
     public LogisticaMaritimaDTO save(LogisticaMaritimaViews logisticaMaritimaViews) {
-        TipoProducto tipoProducto = tipoProductoRepository.getById(logisticaMaritimaViews.getTipoProductoId());
-        Flota flota = flotaRepository.getById(logisticaMaritimaViews.getFlotaId());
-        Puerto puerto = puertoRepository.getById(logisticaMaritimaViews.getPuertosId());
-        Cliente cliente = clienteRepository.getById(logisticaMaritimaViews.getClientesId());
+        TipoProducto tipoProducto = tipoProductoRepository.getById(logisticaMaritimaViews.getTipoProducto());
+        Flota flota = flotaRepository.getById(logisticaMaritimaViews.getFlota());
+        Puerto puerto = puertoRepository.getById(logisticaMaritimaViews.getPuertos());
+        Cliente cliente = clienteRepository.getById(logisticaMaritimaViews.getClientes());
         LogisticaMaritima logisticaMaritima = modelMapper.map(logisticaMaritimaViews, LogisticaMaritima.class);
         logisticaMaritima.setTipoProducto(tipoProducto);
         logisticaMaritima.setFlota(flota);
@@ -88,8 +88,8 @@ public class LogisticaMaritimaServiceImpl implements LogisticaMaritimaService {
         logisticaMaritima.setClientes(cliente);
         if (logisticaMaritimaViews.getCantidad() > 10) {
             Double precio = logisticaMaritimaViews.getPrecioEnvio().doubleValue();
-            Double descuento = (precio * 5) / 100;
-            BigDecimal precioNuevo = BigDecimal.valueOf(precio + descuento);
+            Double descuento = (precio * 3) / 100;
+            BigDecimal precioNuevo = BigDecimal.valueOf(precio - descuento);
             logisticaMaritima.setPrecioEnvio(precioNuevo);
             logisticaMaritima.setDescuento(BigDecimal.valueOf(descuento));
             logisticaMaritima.setPrecioNormal(logisticaMaritimaViews.getPrecioEnvio());
@@ -103,12 +103,20 @@ public class LogisticaMaritimaServiceImpl implements LogisticaMaritimaService {
     public LogisticaMaritimaDTO update(LogisticaMaritimaViews logisticaMaritimaViews, Long id) {
         Optional<LogisticaMaritima> existLogistica = logisticaMaritimaRepository.findById(id);
         if (existLogistica.isPresent()) {
+            TipoProducto tipoProducto = tipoProductoRepository.getById(logisticaMaritimaViews.getTipoProducto());
+            Flota flota = flotaRepository.getById(logisticaMaritimaViews.getFlota());
+            Puerto puerto = puertoRepository.getById(logisticaMaritimaViews.getPuertos());
+            Cliente cliente = clienteRepository.getById(logisticaMaritimaViews.getClientes());
             LogisticaMaritima logisticaMaritima = modelMapper.map(logisticaMaritimaViews, LogisticaMaritima.class);
+            logisticaMaritima.setTipoProducto(tipoProducto);
+            logisticaMaritima.setFlota(flota);
+            logisticaMaritima.setPuertos(puerto);
+            logisticaMaritima.setClientes(cliente);
             logisticaMaritima.setId(id);
             if (logisticaMaritimaViews.getCantidad() > 10) {
                 Double precio = logisticaMaritimaViews.getPrecioEnvio().doubleValue();
-                Double descuento = (precio * 5) / 100;
-                BigDecimal precioNuevo = BigDecimal.valueOf(precio + descuento);
+                Double descuento = (precio * 3) / 100;
+                BigDecimal precioNuevo = BigDecimal.valueOf(precio - descuento);
                 logisticaMaritima.setPrecioEnvio(precioNuevo);
                 logisticaMaritima.setDescuento(BigDecimal.valueOf(descuento));
                 logisticaMaritima.setPrecioNormal(logisticaMaritimaViews.getPrecioEnvio());
