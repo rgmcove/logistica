@@ -16,10 +16,9 @@ server:
 
 spring:
   datasource:
-    #url: jdbc:postgresql://10.19.34.188/zee_db
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/logistica
-    username: root
-    password: 1234
+    url: jdbc:mysql://u8dqcprei4mt3vlb:h7tOheQEuqGGAFURWbGH@bexuqazczajpyzggicwv-mysql.services.clever-cloud.com:3306/bexuqazczajpyzggicwv
+    username: u8dqcprei4mt3vlb
+    password: h7tOheQEuqGGAFURWbGH
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate.ddl-auto: validate
