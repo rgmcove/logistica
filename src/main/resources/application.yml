@@ -4,10 +4,6 @@ api:
   basePackage: com.example.logistica
   description: Automated JSON API documentation for API's built with Spring
   terms: https://
-server:
-  servlet:
-    context-path: /logistica-service
-  port : 8080
 # ===============================
 # = DATA SOURCE MYSQL
 # ===============================
