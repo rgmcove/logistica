@@ -29,3 +29,4 @@ MySQL CLI: mysql -h bexuqazczajpyzggicwv-mysql.services.clever-cloud.com -P 3306
 
 - En la rama server del repositorio se uso esta instancia de base de datos.
 - En la rama develop del repositorio se uso instancia local de base de datos.
+
