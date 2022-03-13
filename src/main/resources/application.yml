@@ -4,11 +4,11 @@ api:
   basePackage: com.example.logistica
   description: Automated JSON API documentation for API's built with Spring
   terms: https://
+
+server.port: ${PORT:8080}
 # ===============================
 # = DATA SOURCE MYSQL
 # ===============================
-
-#configuracion mysql basica
 
 spring:
   datasource:
