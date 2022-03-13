@@ -18,6 +18,11 @@ En el swagger en el botón authorize se ingresa el token para habilitar el uso d
 
 #Despliegue en servidores
 
+Para revisar el despliegue del Swagger en servidor publico, se debe revisar el siguiente enlace:
+https://logistic12.herokuapp.com/swagger-ui/index.html
+
+Aplican los mismos pasos para el login y revisar cada uno de los endpoints en la forma local.
+
 Se implemento la base de datos MySQL en la herramienta Clever Cloud a la cual se puede acceder con los siguientes datos:
 Host: bexuqazczajpyzggicwv-mysql.services.clever-cloud.com
 Database Name: bexuqazczajpyzggicwv
